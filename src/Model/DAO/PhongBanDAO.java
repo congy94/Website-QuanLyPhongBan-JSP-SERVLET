@@ -10,4 +10,5 @@ public interface PhongBanDAO {
 	public void delete(String maPhongBan);
 	public ArrayList<PhongBan> getAll();
 	public PhongBan getByID(String maPhongBan);
+	public ArrayList<PhongBan> getByTenPhongBan(String tenPhongBan);
 }

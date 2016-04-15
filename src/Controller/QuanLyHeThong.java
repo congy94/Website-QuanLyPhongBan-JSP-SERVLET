@@ -173,6 +173,56 @@ public class QuanLyHeThong extends HttpServlet {
 			request.getRequestDispatcher("/updateThanhCong.jsp").include(request, response);
 			break;
 		}
+		case "timkiem":{
+			String tukhoatimkiem = request.getParameter("tukhoatimkiem");
+			String timkiemtheo = request.getParameter("timkiemtheo");
+			if(timkiemtheo.equals("Nhân viên")){
+				String tenNhanVien = tukhoatimkiem;
+				ArrayList<NhanVien> nvList = new ArrayList<>();
+				NhanVienBO nhanvienBO = new NhanVienBO();
+				nvList = nhanvienBO.getByTenNhanVien(tenNhanVien);
+				response.sendRedirect("QuanLyHeThong?act=xemNhanVienTenNhanVien&maNhanVien="+nvList.get(0).getMaNhanVien());
+			}
+			else if(timkiemtheo.equals("Phòng ban")){
+				String tenPhongBan = tukhoatimkiem;
+				ArrayList<PhongBan> pb = new ArrayList<PhongBan>();
+				PhongBanBO phongbanBO = new PhongBanBO();
+				pb = phongbanBO.getByTenPhongBan(tenPhongBan);
+				response.sendRedirect("QuanLyHeThong?act=xemPhongBanTenPhongBan&maPhongBan="+pb.get(0).getMaPhongBan());
+			}else{
+			response.sendRedirect("/timKiem.jsp");
+			}
+			break;
+		}
+		case "xemPhongBanTenPhongBan":{
+			String maPhongBan = request.getParameter("maPhongBan");
+			PhongBan pb = new PhongBan();
+			PhongBanBO phongbanBO = new PhongBanBO();
+			pb = phongbanBO.getByID(maPhongBan);
+			ArrayList<PhongBan> pbList = new ArrayList<>();
+			pbList.add(pb);
+			System.out.println(pbList.size());
+			request.setAttribute("PhongBan", pbList);
+			request.getRequestDispatcher("/xemPhongBan.jsp").include(request, response);
+			break;
+		}
+		case "xemNhanVienTenNhanVien":{
+			String maNhanVien = request.getParameter("maNhanVien");
+			NhanVien nv = new NhanVien();
+			NhanVienBO nhanvienBO = new NhanVienBO();
+			PhongBanBO phongBanBO = new PhongBanBO();
+			nv = nhanvienBO.getByID(maNhanVien);
+			ArrayList<NhanVien> nvList = new ArrayList<>();
+			nvList.add(nv);
+			ArrayList<PhongBan> phongBanList = new ArrayList<>();
+			phongBanList = phongBanBO.getAll();
+			request.setAttribute("NhanVien", nvList);
+			request.setAttribute("PhongBan", phongBanList);
+			RequestDispatcher dispatcher = request.getServletContext().getRequestDispatcher("/xemNhanVien.jsp");
+			dispatcher.forward(request, response);
+			
+			break;
+		}
 		}
 	}
 

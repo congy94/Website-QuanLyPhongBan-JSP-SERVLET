@@ -129,4 +129,20 @@ public class NhanVienBO implements NhanVienDAO {
 		
 	}
 
+	@Override
+	public ArrayList<NhanVien> getByTenNhanVien(String tenNhanVien) {
+		ArrayList<NhanVien> nhanVienList = new ArrayList<NhanVien>();
+		try (Connection con = ConnectDB.getConnection()) {
+			String sql = "select * from nhanvien where tenNhanVien='"+tenNhanVien+"'";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				nhanVienList.add(createNhanvien(rs));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return nhanVienList;
+	}
+
 }

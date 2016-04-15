@@ -85,4 +85,20 @@ public class PhongBanBO implements PhongBanDAO {
 		return phongban;
 	}
 
+	@Override
+	public ArrayList<PhongBan> getByTenPhongBan(String tenPhongBan) {
+		ArrayList<PhongBan> PhongBanList = new ArrayList<PhongBan>();
+		try (Connection con = ConnectDB.getConnection()) {
+			String sql = "select * from phongban where tenPhongBan='"+tenPhongBan+"'";
+			PreparedStatement ps = con.prepareStatement(sql);
+			ResultSet rs = ps.executeQuery();
+			while (rs.next()) {
+				PhongBanList.add(createPhongBan(rs));
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return PhongBanList;
+	}
+
 }

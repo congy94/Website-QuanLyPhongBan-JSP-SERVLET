@@ -13,5 +13,6 @@ public interface NhanVienDAO {
 	public ArrayList<NhanVien> getAll();
 	public NhanVien getByID(String maNhanVien);
 	public int soLuongNhanVien(String tenphongBan);
+	public ArrayList<NhanVien> getByTenNhanVien(String tenNhanVien);
 
 }

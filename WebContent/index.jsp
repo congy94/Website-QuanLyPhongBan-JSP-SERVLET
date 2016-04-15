@@ -23,8 +23,8 @@
           <a href="" class="btn btn-success btn-block">Trang chủ</a>
           <a href="QuanLyHeThong?act=xemNhanVien" class="btn btn-default btn-block" target="_main">Xem nhân viên</a>
           <a href="QuanLyHeThong?act=xemPhongBan"  class="btn btn-default btn-block" target="_main">Xem phòng ban</a>
-          <a href="timkiem.html"  class="btn btn-default btn-block" target="_main">Tìm kiếm</a>
-          <a href="trogiup.html"  class="btn btn-default btn-block"target="_main">Trợ giúp chương trình</a>
+          <a href="timKiem.jsp"  class="btn btn-default btn-block" target="_main">Tìm kiếm</a>
+          <a href="trogiupchuongtrinh.jsp"  class="btn btn-default btn-block"target="_main">Trợ giúp chương trình</a>
         </div>
         <div class="content-main col-sm-8" style="margin-right:5px">  
           <iframe src="trangChu.jsp" name="_main" style="border:none;" width="100%" height="500px"></iframe>
